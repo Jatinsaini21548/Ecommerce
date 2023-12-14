@@ -26,7 +26,7 @@
       crossorigin="anonymous">
     {% include 'store/navbar.html' %}
   </head>
-  <body class="catpage_bg">
+  <body style="background-image: url('{% static "images/category.jpg" %}); background-size: cover;">
     {% block content %}
 
     <div class="py-5">
@@ -38,8 +38,8 @@
             </div>
             <div class="row">
               {% for item in category %}
-              <div class="col-md-3 category_margin">
-                <div class="card card_bgcolor" >
+              <div class="col-md-3" style="margin-top: 45px;">
+                <div class="card" style="background-color: #575656e0;">
                   <a href="{% url 'collectionsview' item.slug %}">
                     <div class="card-body">
                       <div class="category-image">

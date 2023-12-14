@@ -34,7 +34,8 @@
             <div class="row">
               {% for item in products %}
               <div class="col-md-3">
-                <div class="card product_card">
+                <div class="card"
+                  style="background-color: #575656e0; max-height: 342px">
                   <a
                     href="{% url 'productview' item.category.slug item.slug  %}">
                     <div>

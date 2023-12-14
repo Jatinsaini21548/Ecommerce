@@ -25,9 +25,9 @@
     />
 
   </head>
-  <body >
+  <body style = "background-image: url('{% static "images/loginbg3.jpg" %}'); background-size: cover; background-position: center;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-       <div  class="container-fluid navbar_margin">
+       <div  class="container-fluid" style="margin-right: 81px;" >
     <a class="navbar-brand" href="{% url 'home' %}">
       <img src="{% static 'images/shoppingbag.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
       Ekart
@@ -36,16 +36,16 @@
     <div class="container" >
       <div class="row justify-content-center">
         <div class="col-6">
-          <div class="card mt-3 shadow card_bgcolor">
+          <div class="card mt-3 shadow " style = "background-color: #21252961; ">
             <div class="card-body">
               <form action="" method="POST">
                 {% csrf_token %}
-                <div class="text-center loginheading logintext">
-                  <h4>Login</h4>
+                <div class="text-center loginheading">
+                  <h4 style= "color:white" >Login</h4>
                 </div>
                 <div class="form-group">
                   <div>
-                    <label class="form-label logintext loginpg_labels">Username:</label>
+                    <label class="form-label" style= "color:white; margin-top: 14px;">Username:</label>
                   </div>
                   <div>
                     <input
@@ -60,7 +60,8 @@
                 <div class="form-group">
                   <label
                     for=" "
-                    class="form-label loginpg_labels"
+                    style="margin-top: 14px; color: white;"
+                    class="form-label"
                     >Password:</label
                   >
                   <input
@@ -70,8 +71,8 @@
                     placeholder="Enter password"
                   />
                 </div>
-                <div>
-                  <button  type="submit" class="btn btn-success px-4 login-btn ">
+                <div class= "loginbtn">
+                  <button style="margin-top: 20px; width:539px; display: flex; justify-content: center; background-color: #0d6efd ; border-radius: 50px;" type="submit" class="btn btn-success px-4">
                   Login
                 </button>
               </div>        
@@ -80,8 +81,10 @@
               
               <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
 
-              <a class="forget_password_btn"  type= "button" href = "{% url 'forgetpassword' %}">Forgot password ?</a>
-              <a class= "not_user"  type= "button" href = "{% url 'register' %}">Not a user ?</a>
+              <a style="margin-left: 392px;
+              margin-top: 10px; color: white; hover:color: #0d6efd;"type= "button" href = "{% url 'forgetpassword' %}">Forgot password ?</a>
+              <a style="margin-left: 440px;
+              margin-top: 10px; color: white; hover:color: #0d6efd "   type= "button" href = "{% url 'register' %}">Not a user ?</a>
             </div>
           </div>
         </div>
