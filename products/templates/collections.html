@@ -26,7 +26,7 @@
       crossorigin="anonymous">
     {% include 'store/navbar.html' %}
   </head>
-  <body style="background-image: url('{% static "images/category.jpg" %}); background-size: cover;">
+  <body class="category_view">
     {% block content %}
 
     <div class="py-5">
@@ -40,7 +40,7 @@
               {% for item in category %}
               <div class="col-md-3" style="margin-top: 45px;">
                 <div class="card" style="background-color: #575656e0;">
-                  <a href="{% url 'collectionsview' item.slug %}">
+                  <a href="{% url 'collectionsview' item.id %}">
                     <div class="card-body">
                       <div class="category-image">
                         <img src="{{ item.image.url }}" alt="Category image"
@@ -68,18 +68,10 @@
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
           integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
           crossorigin="anonymous"></script>
-        <!-- CSS -->
-        <script>
-    alertify.set('notifier', 'position', 'top-right');
-    {% for message in  messages %}
-       alertify.success("{{ message }}");
-    {% endfor %}
-
-
-</script>
+        
 
         {% block scripts %}
-
+               
         {% endblock scripts %}
 
         <div class="container">
