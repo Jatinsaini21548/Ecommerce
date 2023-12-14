@@ -1,0 +1,30 @@
+{% load i18n static %}
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;margin-top: 35px;margin-left: 28px;border-radius: 25px;">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4 loginheading text-center">EKart
+        
+      </span>
+    </a>
+    <ul class="nav nav-pills flex-column mb-auto">
+    
+      <li>
+        <a href="{% url 'collections' %}" class="nav-link text-white">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+          Categories
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="nav-link text-white">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+          Products
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'contactus' %}" class="nav-link text-white">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+          Contact Us
+        </a>
+      </li>
+    </ul>
+</div>

@@ -1,0 +1,70 @@
+{% load i18n static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/shoppingbag.png' %}" alt width="30"
+        height="24" class="d-inline-block align-text-top">
+      Ekart
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        {% comment %} <a class="nav-link" style="
+        color: white;" href="{% url 'collections' %}">Categories</a> {%
+        endcomment %}
+
+        {% if request.user.is_authenticated %}
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+          </li>
+          <form class="d-flex">
+            <input class="form-control me-2 formborder" type="search"
+              placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary formborder search_margin"
+              type="submit">Search</button>
+          </form>
+          <a class="nav-link active" aria-current="page"
+            style="margin-right: 20px;" href="{% url 'cart' %}">Cart &#128722;</a>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              {{ request.user }}
+            </a>
+            <ul class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </ul>
+          </li>
+        </ul>
+
+        {% else %}
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false" style="
+            color: white;">
+              Account
+            </a>
+            <ul class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'loginpage' %}">Login</a>
+
+              <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+            </ul>
+          </li>
+        </ul>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</nav>
