@@ -16,18 +16,18 @@
                 <tr class="testing mb-4">
                   <td><img src="{{ item.product.product_image.url }}" class="laptop-img"></img></td>
                   <td>{{ item.product.name }}</td>
-                  <td>Rs {{ item.product.selling_price }}</td>
+                  <td >Rs<div id="totalPrice">{{ item.product.selling_price }}</div></td>
                   <form id="quantityForm">
-                    {% csrf_token %}
-                    <td>
-                      <label style="margin-left: 54px;" for="Quantity">Quantity</label>
-                      <div class="quantity">
-                        <a  class="quantity__minus"><span>-</span></a>
-                        <input name="quantity" type="text" class="quantity__input" value="{{item.product_qty}}">
-                        <a   class="quantity__plus"><span>+</span></a>
-                        <input type="hidden" name="product_cart_id" value="{{item.id}}">
-                      </div>
-                    </td>
+                      {% csrf_token %}
+                      <td>
+                          <label style="margin-left: 54px;" for="Quantity">Quantity</label>
+                          <div class="quantity">
+                              <a class="quantity__minus"><span>-</span></a>
+                              <input name="quantity" type="text" class="quantity__input" value="{{item.product_qty}}" oninput="updateTotalPrice()">
+                              <a class="quantity__plus"><span>+</span></a>
+                              <input type="hidden" name="product_cart_id" value="{{item.id}}">
+                          </div>
+                      </td>
                   </form>
                   <td>
                     <div class="col-md-2 my-auto">
@@ -37,14 +37,20 @@
                         Remove </a>
                     </div>
                   </td>
-
                 </tr>
-                {% endfor %}
-                {% else %}
-                <h4>Your cart is empty</h4>
-                {% endif %}
+
               </tbody>
             </table>
+            {% endfor %}
+            <div class="checkout">
+             <a href="{% url 'checkout' %}"> <button type="button" class="btn btn-primary px-4">
+                  Proceed
+              </button></a>
+            </div> 
+            {% else %}
+            
+            <h4>Your cart is empty</h4>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -55,7 +61,11 @@
 <script>
   $(document).ready(function () {
     // Assuming each row has a unique identifier for product, e.g., data-product-id
-    const maxQuantity = 10; // Set your maximum quantity limit
+    const maxQuantity = 20; // Set your maximum quantity limit
+    // Use a regular expression to match and extract the number
+
+    const priceElement = $('#totalPrice');
+    const initialPrice = parseFloat(priceElement.text());
 
     $('.quantity__minus').click(function (e) {
       e.preventDefault();
@@ -72,9 +82,18 @@
       const input = row.find('.quantity__input');
       const productId = row.data('product-id');
 
+      
       var value = parseInt(input.val()) + change;
       if (value >= 1 && value <= maxQuantity) {
         input.val(value);
+
+        // Calculate total price by multiplying quantity with product price
+        const productPrice = parseFloat(row.find('.product-price').text().replace('Rs ', ''));
+        const totalPrice = value * productPrice;
+        
+        // Display the updated total price
+        row.find('.total-price').text('Rs ' + totalPrice.toFixed(2));
+
         quantityChangedCallback(productId, value);
         sendUpdateToServer(productId, value);
       }
@@ -83,6 +102,9 @@
     function quantityChangedCallback(productId, newQuantity) {
       console.log(`Quantity changed for product ${productId} to ${newQuantity}`);
       // Add your custom logic or callback function when the quantity changes
+      typeof(initialPrice);
+      const newPrice = initialPrice*newQuantity;
+      priceElement.text(newPrice);
     }
 
     function sendUpdateToServer(productId, newQuantity) {
@@ -117,6 +139,6 @@
       }
       return cookieValue;
     }
-    });
+  });
 </script>
 {% endblock content %}

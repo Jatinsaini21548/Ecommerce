@@ -1,0 +1,17 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <form>
+        {% for index in billdetail %}
+            <div class="form-check">
+                <label class="form-check-label" for="radio{{ obj.id }}">
+                        {{index.address}}
+                </label>
+            </div>
+        {% endfor %}
+    </form>
+</div>
+{% endblock %}
+

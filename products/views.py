@@ -15,6 +15,6 @@ def productview(request, id):
 
 
 def collectionsview(request, id):
-    products =  Product.objects.filter(category =  id, status =  0)
+    products =  Product.objects.filter(category = id, status = 0)
     context = {'products': products}
     return render(request, "index.html", context)

@@ -5,6 +5,11 @@ from django.contrib.auth.models import AbstractUser
 
 class Register_user(AbstractUser):
     token =  models.IntegerField(null=True)
+    address = models.CharField(max_length = 450, null=True)
+    optional_address = models.CharField(max_length=450, null=True) 
+    country = models.CharField(max_length = 50, null=True)
+    state = models.CharField(max_length = 50, null=True)
+    zip = models.IntegerField(null=True, blank = False)
 
 def get_file_path(request, filename):
     original_filename = filename
@@ -57,5 +62,15 @@ class Cart(models.Model):
     product = models.ForeignKey(Product, on_delete = models.CASCADE )
     product_qty = models.IntegerField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add= True)
+
+
+
+class BillingDetail(models.Model):
+    first_name = models.CharField(max_length = 60)
+    last_name = models.CharField(max_length = 60)
+    email = models.EmailField()
+
+
+
 
 
